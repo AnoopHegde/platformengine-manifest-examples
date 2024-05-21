@@ -3,6 +3,7 @@ name: Example Workflow 1
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:  
 jobs:
   build:
     name: Build
