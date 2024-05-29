@@ -1,0 +1,31 @@
+name: 'Self Hosted deploy workflow'
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main 
+  workflow_dispatch:
+    inputs:
+      env-class:
+        description: 'The environment class to deploy to'
+        default: npd
+        type: choice
+        options:
+        - npd
+        - prd
+
+jobs:
+  deploy-npd-cluster:
+    name: Deploy NPD Github Runner Cluster
+    if: inputs.env-class != 'prd' || github.event_name == 'pull_request'
+    uses: Platform-CloudOps/platformengine-reusable-workflows/.github/workflows/reusable-plan.yaml@v0.1.2
+    with:
+      github-env: npd
+      environment: npd
+      working-directory: ./
+      runner-label: ubuntu-latest
+    secrets: inherit  
+        
