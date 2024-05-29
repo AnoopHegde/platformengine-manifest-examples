@@ -21,7 +21,7 @@ jobs:
   deploy-npd-cluster:
     name: Deploy NPD Github Runner Cluster
     if: inputs.env-class != 'prd' || github.event_name == 'pull_request'
-    uses: platform-cloudops/platformengine-reusable-workflows/.github/workflows/reusable-plan.yaml@v0.1.4
+    uses: Platform-CloudOps/platformengine-reusable-workflows/.github/workflows/reusable-plan.yaml@v0.1.4
     with:
       github-env: npd
       environment: npd
